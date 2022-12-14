@@ -32,7 +32,7 @@ from pages.geostatistiques import layout as lay_geostat
 
 
 #Read image
-img_greenrock =r'assets/GREEN-ROCK.jpg' # replace with your own image
+img_greenrock =r'D:\Documents\mato\OneDrive - BRGM\Bureau\Aleasismique_Mayotte\Code\Application_EDA\dash_app\assets\GREEN-ROCK.jpg' # replace with your own image
 encoded_imggr = base64.b64encode(open(img_greenrock, 'rb').read())
 
 #Composants de l'application
@@ -41,8 +41,9 @@ navbar =dbc.NavbarSimple([
     dbc.NavItem(html.Img(src='data:image/jpg;base64,{}'.format(encoded_imggr.decode()))),
     dbc.NavItem(html.H2("Exploratory Data Analysis")),
     dbc.NavItem(dbc.NavLink("Accueil", href="/", active="exact")),
-    dbc.NavItem(dbc.NavLink("Statistiques", href="/page-1", active="exact")),
-    dbc.NavItem(dbc.NavLink("Geostastiques", href="/page-2", active="exact")),             
+   dbc.NavItem(dbc.NavLink("Machine Learning", href="/page-1", active="exact")),
+   # dbc.NavItem(dbc.NavLink("Geostastiques", href="/page-2", active="exact")), 
+   
      ])
 
 #Content
@@ -90,8 +91,8 @@ def display_page(pathname):
         return lay_home
     elif pathname == '/page-1':
         return  lay_stat
-    elif pathname == '/page-2':
-        return lay_geostat
+    # elif pathname == '/page-2':
+    #     return lay_geostat
     else :
         return '404' 
 
