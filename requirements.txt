@@ -11,3 +11,4 @@ matplotlib
 reverse_geocoder
 seaborn
 gunicorn
+sklearn
