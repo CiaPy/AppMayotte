@@ -8,6 +8,6 @@ dash-labs==1.2.0
 dash-table==5.0.0
 pandas
 matplotlib
-reverse-geocode
+reverse_geocoder
 seaborn
 gunicorn
