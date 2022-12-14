@@ -6,7 +6,5 @@ dash-gif-component==1.1.0
 dash-html-components==2.0.0
 dash-labs==1.2.0
 dash-table==5.0.0
-GitPython==3.1.29
-pandas @ file:///C:/b/abs_cdcgk91igc/croots/recipe/pandas_1663772960432/work
-pandas-profiling==3.3.0
+pandas
 gunicorn
