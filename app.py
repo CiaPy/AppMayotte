@@ -68,7 +68,7 @@ footer = html.Div(fdivs, style={
 
 #My app
 app = dash.Dash(__name__,external_stylesheets=[dbc.themes.LUX],use_pages=True,suppress_callback_exceptions=True)
-
+server = app.server
 
 #Structure de l'app
 app.layout = dbc.Container([
