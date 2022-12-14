@@ -22,9 +22,9 @@ import matplotlib.pyplot as plt
 
 
 #mydata
-df_pointés = pd.read_csv(r"D:\Documents\mato\OneDrive - BRGM\Bureau\Aleasismique_Mayotte\Data_processed\RESULTATS\processing_pointesinterfaces_v1.csv", sep=";")
-df_hv = pd.read_csv(r"D:\Documents\mato\OneDrive - BRGM\Bureau\Aleasismique_Mayotte\Data_processed\HV\HV_processed.csv", sep=";")
-df_aem = pd.read_csv(r"D:\Documents\mato\OneDrive - BRGM\Bureau\Aleasismique_Mayotte\Data_processed\AEM\aem_processed_v1.csv", sep=";")
+#df_pointés = pd.read_csv(r"D:\Documents\mato\OneDrive - BRGM\Bureau\Aleasismique_Mayotte\Data_processed\RESULTATS\processing_pointesinterfaces_v1.csv", sep=";")
+#df_hv = pd.read_csv(r"D:\Documents\mato\OneDrive - BRGM\Bureau\Aleasismique_Mayotte\Data_processed\HV\HV_processed.csv", sep=";")
+#df_aem = pd.read_csv(r"D:\Documents\mato\OneDrive - BRGM\Bureau\Aleasismique_Mayotte\Data_processed\AEM\aem_processed_v1.csv", sep=";")
 
 #Fonction
 
@@ -52,11 +52,12 @@ def correlation_matrix(df):
     heatmapcorr_df = sns.heatmap(df.corr(), annot=True, linewidths=0.5)
     return corr_df, heatmapcorr_df
 
-general_analysis(df_hv)
-univarirate_analysis_A(df_hv)
-correlation_matrix(df_hv)
+#general_analysis(df_hv)
+#univarirate_analysis_A(df_hv)
+#correlation_matrix(df_hv)
 
-tablepointes = dash_table.DataTable(
+'''
+#tablepointes = dash_table.DataTable(
     id='tablepointes',
     columns=[{"name": i, "id": i} for i in df_pointés.columns],
     data=df_pointés.to_dict('records'),
@@ -64,7 +65,7 @@ tablepointes = dash_table.DataTable(
     page_size=5,
 )
 
-
+'''
 
 layout =  dcc.Tabs([
         
@@ -74,7 +75,7 @@ layout =  dcc.Tabs([
             html.H2("General"),
             html.H4("Description générale des données"),
         
-
+'''
          html.Div([   dbc.Card(
                [
                   html.H2(shp_df, className="card-title"),
@@ -113,9 +114,10 @@ html.Div([
                  html.H2("Analyse univariée"),
                   html.H2("Matrice de corrélation"),
                    html.H2("Analyse bivariée"),
-                                                            ]) ]
+                                                            ]) ''']
                         ,
-                                          )  ]) ])
+                                          ) 
+        ]) ])
 
 
  
