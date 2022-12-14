@@ -12,3 +12,4 @@ reverse_geocoder
 seaborn
 gunicorn
 scikit-learn
+psycopg2
