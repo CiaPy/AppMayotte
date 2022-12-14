@@ -19,12 +19,19 @@ from dash import dash_table
 
 import seaborn as sns
 import matplotlib.pyplot as plt
-
+import psycopg2
 
 #mydata
-#df_pointés = pd.read_csv(r"D:\Documents\mato\OneDrive - BRGM\Bureau\Aleasismique_Mayotte\Data_processed\RESULTATS\processing_pointesinterfaces_v1.csv", sep=";")
-#df_hv = pd.read_csv(r"D:\Documents\mato\OneDrive - BRGM\Bureau\Aleasismique_Mayotte\Data_processed\HV\HV_processed.csv", sep=";")
-#df_aem = pd.read_csv(r"D:\Documents\mato\OneDrive - BRGM\Bureau\Aleasismique_Mayotte\Data_processed\AEM\aem_processed_v1.csv", sep=";")
+'''
+df_pointés = pd.read_csv(r"D:\Documents\mato\OneDrive - BRGM\Bureau\Aleasismique_Mayotte\Data_processed\RESULTATS\processing_pointesinterfaces_v1.csv", sep=";")
+df_hv = pd.read_csv(r"D:\Documents\mato\OneDrive - BRGM\Bureau\Aleasismique_Mayotte\Data_processed\HV\HV_processed.csv", sep=";")
+df_aem = pd.read_csv(r"D:\Documents\mato\OneDrive - BRGM\Bureau\Aleasismique_Mayotte\Data_processed\AEM\aem_processed_v1.csv", sep=";")
+'''
+
+conn = psycopg2.connect(host="dpg-cecsgdsgqg459grbbo70-a.frankfurt-postgres.render.com", port = 5432, database="dbmayotte", user="ciapy", password="fkid4gbdDC58V5wwjZGA4rqqcLnRVyZ0")
+statment= f""" select * FROM public.dataset """
+df= pd.read_sql_query(statment ,con=conn)
+df
 
 #Fonction
 
@@ -52,20 +59,20 @@ def correlation_matrix(df):
     heatmapcorr_df = sns.heatmap(df.corr(), annot=True, linewidths=0.5)
     return corr_df, heatmapcorr_df
 
-#general_analysis(df_hv)
-#univarirate_analysis_A(df_hv)
-#correlation_matrix(df_hv)
+general_analysis(df)
+univarirate_analysis_A(df)
+correlation_matrix(df)
 
-'''
-#tablepointes = dash_table.DataTable(
+
+tablepointes = dash_table.DataTable(
     id='tablepointes',
-    columns=[{"name": i, "id": i} for i in df_pointés.columns],
-    data=df_pointés.to_dict('records'),
+    columns=[{"name": i, "id": i} for i in df.columns],
+    data=df.to_dict('records'),
     page_action="native",
     page_size=5,
 )
 
-'''
+
 
 layout =  dcc.Tabs([
         
@@ -114,10 +121,8 @@ html.Div([
                  html.H2("Analyse univariée"),
                   html.H2("Matrice de corrélation"),
                    html.H2("Analyse bivariée"),
-                                                            ]) ''']
-                        ,
-                                          ) 
-        ]) ])
+                                                            ]) '''
+            ])  ]) ])
 
 
  
