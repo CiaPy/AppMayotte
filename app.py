@@ -32,7 +32,7 @@ from pages.geostatistiques import layout as lay_geostat
 
 
 #Read image
-img_greenrock =r'D:\Documents\mato\OneDrive - BRGM\Bureau\Aleasismique_Mayotte\Code\Application_EDA\dash_app\assets\GREEN-ROCK.jpg' # replace with your own image
+img_greenrock =r'assets\GREEN-ROCK.jpg' # replace with your own image
 encoded_imggr = base64.b64encode(open(img_greenrock, 'rb').read())
 
 #Composants de l'application
