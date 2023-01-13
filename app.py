@@ -17,34 +17,26 @@ from dash import html
 import dash_labs as dl
 import dash_gif_component as gif
 from dash import dash_table
+from tabs import intro, prediction, explain, evaluation
 
+import glob
+import os
 
-
-from classes_py.data import get_datapointés,group_by_source,get_datahv,count_hv
-from classes_py.model import Model
-from classes_py.result import Result
+#from classes_py.data import get_datapointés,group_by_source,get_datahv,count_hv
+from classes_py.RF import layout as lay_rf
+# from classes_py.result import Result
 
 
 from pages.accueil import layout as lay_home
-from pages.statistiques import layout as lay_stat
-from pages.geostatistiques import layout as lay_geostat
-
+#from pages.statistiques import layout as lay_stat
+#from pages.geostatistiques import layout as lay_geostat
+from pages.projet import layout as lay_projet
 
 
 #Read image
-img_greenrock =r'assets/GREEN-ROCK.jpg' # replace with your own image
+img_greenrock =r'D:\Documents\mato\OneDrive - BRGM\Bureau\Aleasismique_Mayotte\Code\Application_EDA\dash_app\assets\I A.png' # replace with your own image
 encoded_imggr = base64.b64encode(open(img_greenrock, 'rb').read())
 
-#Composants de l'application
-#Navbar
-navbar =dbc.NavbarSimple([
-    dbc.NavItem(html.Img(src='data:image/jpg;base64,{}'.format(encoded_imggr.decode()))),
-    dbc.NavItem(html.H2("Exploratory Data Analysis")),
-    dbc.NavItem(dbc.NavLink("Accueil", href="/", active="exact")),
-   dbc.NavItem(dbc.NavLink("Machine Learning", href="/page-1", active="exact")),
-   # dbc.NavItem(dbc.NavLink("Geostastiques", href="/page-2", active="exact")), 
-   
-     ])
 
 #Content
 content = html.Div(id="page-content", style={ 'marginLeft' : '-18px',
@@ -71,15 +63,43 @@ footer = html.Div(fdivs, style={
 app = dash.Dash(__name__,external_stylesheets=[dbc.themes.LUX],use_pages=True,suppress_callback_exceptions=True)
 server = app.server
 
+app.title = 'IA Mayotte'
+
+
+navbar = dbc.Navbar(
+    [
+     dbc.Container(
+        [
+       
+            dbc.Row(
+                [
+           dbc.Col(html.Img(src=app.get_asset_url("logo.png"), height="150px")),
+           dbc.Col( dbc.NavItem(dbc.NavLink("Accueil", href="/", active="exact"))),
+           dbc.Col( dbc.NavItem(dbc.NavLink("Le projet", href="/page-1", active="exact"))),
+           dbc.Col( dbc.NavItem(dbc.NavLink("Machine Learning", href="/page-2", active="exact")),)
+                ],className="flex-grow-1",
+                align="center",
+               
+            ),
+          
+     ]),
+        #dbc.NavbarToggler(id="navbar-toggler")
+       
+    ],
+    color="white"
+  
+    
+)
+
 #Structure de l'app
 app.layout = dbc.Container([
                           html.Div([ dcc.Location(id="url",refresh=False), 
                           navbar, 
-                          content,footer 
+                          content,
+                          footer 
                           ]),
               dash.page_container  ],style={ 'marginBottom' : '5px'
                          },fluid=True)
-
 
 
 # Update the pages
@@ -90,15 +110,22 @@ def display_page(pathname):
     if pathname == '/':
         return lay_home
     elif pathname == '/page-1':
-        return  lay_stat
-    # elif pathname == '/page-2':
-    #     return lay_geostat
+          return lay_projet
+    elif pathname == '/page-2':
+        return  lay_rf
+    
     else :
         return '404' 
 
 
-          
+@app.callback(Output('tabs-content', 'children'),
+              [Input('tabs', 'value')])
+def render_content(tab):
+    if tab == 'tab-intro': return intro.layout
+    elif tab == 'tab-predict': return prediction.layout
+    elif tab == 'tab-explain': return explain.layout
+    elif tab == 'tab-evaluate': return evaluation.layout
+
 
 if __name__ == "__main__":
-
-    app.run_server(debug=False, host="0.0.0.0", port=8080)
+    app.run_server(debug=True,  port=8080)

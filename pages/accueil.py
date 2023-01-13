@@ -22,35 +22,19 @@ import dash_gif_component as gif
 
 layout=              html.Div(
                     [
-#                        dbc.Row([
-               
-#                       dbc.Col([  html.Div([
-#     gif.GifPlayer(
-#         gif='assets/Yl4w.gif', still = 'assets/earthcom-facebook.jpg'
-#     )
-# ]),]),
+
                       
                       dbc.Col([ html.Div(
                                   [
+                                      html.H2("Geo IA", style={"font-weight": "bold",'textAlign': 'center'},),
                                       html.H4(
-                                          "Artificial Intelligence for Earth Science",
+                                          "L'intelligence Artificielle pour les Géosciences",
                                           style={"font-weight": "bold",'textAlign': 'center'},
                                       ),
-                                      html.P([
-                                          "Analyse exploratoire statistiques et géostatistiques des données " ,html.Br()," AEM, BSS et Profondeur Interfaces " 
-                                     ] ,style={"font-weight": "bold",'textAlign': 'center'}),
+                                      
                                   ]
                               ),]),
-#                        dbc.Col([   html.Div([
-#     gif.GifPlayer(
-#         gif='assets/fin-brain2-1.gif', still= 'assets/image.png'
-#     )
-# ])])
-#                     ],
-#                     className="three column",
-#                     id="title",
-#                 )
-                      
+
 
 html.H1('', 
         style={'background-image': 'url(https://www.atterrir.com/wp-content/uploads/2016/08/mayotte.jpg)', 

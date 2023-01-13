@@ -18,29 +18,29 @@ import pickle
 # Machine learning - Preprocessing
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder, RobustScaler, StandardScaler,MinMaxScaler
 
-class Result():
+# class Result():
     
-    def __init__(self, dtf):
-        self.dtf = dtf
+#     def __init__(self, dtf):
+#         self.dtf = dtf
         
-        @staticmethod
-        def process_df(df):
+#         @staticmethod
+#         def process_df(df):
             
-            # Define features data (X)
-            Xessaie = df[['rho','F0_IDW']]
+#             # Define features data (X)
+#             Xessaie = df[['rho','F0_IDW']]
             
-            # Define target data (y)
-            yessaie = df[['Profondeur']]
+#             # Define target data (y)
+#             yessaie = df[['Profondeur']]
             
-            # Initialise the encoder
-            scmm = MinMaxScaler()
+#             # Initialise the encoder
+#             scmm = MinMaxScaler()
             
-            # Apply encoder on target data
-            Xessaie = scmm.fit_transform(Xessaie)
-            return Xessaie
+#             # Apply encoder on target data
+#             Xessaie = scmm.fit_transform(Xessaie)
+#             return Xessaie
 
-        def loadandresult(file_pickle,df):
-            with open(file_pickle , 'rb') as f:
-                lr = pickle.load(f)
-                df['reg_pred'] = lr.predict(self.process_df(file_pickle,self.df))
+#         def loadandresult(file_pickle,df):
+#             with open(file_pickle , 'rb') as f:
+#                 lr = pickle.load(f)
+#                 df['reg_pred'] = lr.predict(self.process_df(file_pickle,self.df))
                 
