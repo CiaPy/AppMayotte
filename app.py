@@ -34,7 +34,7 @@ from pages.projet import layout as lay_projet
 
 
 #Read image
-img_greenrock =r'/assets/IA.png' # replace with your own image
+img_greenrock =r'assets/IA.png' # replace with your own image
 encoded_imggr = base64.b64encode(open(img_greenrock, 'rb').read())
 
 
